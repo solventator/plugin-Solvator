@@ -719,7 +719,7 @@ class Solvator(PT):
       print "There was a problem calculating the centroid"
       return None
     
-  def place_in_void(self, peak, host_atoms):#, min_peak_height, short_contact):
+  def place_in_void(self, peak, host_atoms):
     if peak.peak_height > minimum_peak_height:
       place_in_void = True
       for atom in host_atoms:
@@ -757,7 +757,7 @@ class Solvator(PT):
       print "Added %s%s at a minimum distance of %.2f" % (nearest_peak.symbol, nearest_peak.label, minimum)
     return compressed_q_peaks  
   
-  def find_q_peak_clusters(self, peaks, number_of_clusters):#, minimum_peak_height, short_contact):
+  def find_q_peak_clusters(self, peaks, number_of_clusters):
 
     # This method searches for clusters in the q-peaks.
     
@@ -824,7 +824,7 @@ class Solvator(PT):
     
     return cluster_peak_lists
 
-  def get_peaks_in_voids(self, q_peaks, host_atoms):#, minimum_peak_height, short_contact):
+  def get_peaks_in_voids(self, q_peaks, host_atoms):
     
     # This method sorts q-peaks that may be part of the structure, from those that are in a void, using some user-defined
     # criteria of minimum peak height, and the short contact (the distance from which a q-peak must lie from the main structure)
@@ -1057,8 +1057,8 @@ class Solvator(PT):
             outfile.write("PART 0\n")
               
           elif len(molecule_list) >= 3:
-            outfile.write("PART %s%s %s%.6f\n" % (sign, number_of_PARTS, number_of_FVAR, site_occu))
             for molecule in molecule_list:
+              outfile.write("PART %s%s %s%.6f\n" % (sign, number_of_PARTS, number_of_FVAR, site_occu))
               for atom in molecule.transformed_atoms:
                 outfile.write(("%s %s %.6f %.6f %.6f %s%.6f %.6f\n") % (atom.olex_id, atom.sfac, atom.coords[0], atom.coords[1], atom.coords[2], number_of_FVAR,  site_occu, atom.uiso))#, number_of_FVAR))
               number_of_FVAR += 1
@@ -1083,10 +1083,10 @@ class Solvator(PT):
           molecule.restraints = copy.deepcopy(molecule.original_restraints)
           for n in range(len(molecule.original_restraints)):
             for atom in molecule.transformed_atoms:
-              #print "replacing %s with %s" % (atom.name, atom.solvator_id)
+              print "replacing %s with %s" % (atom.name, atom.solvator_id)
               molecule.restraints[n] = molecule.restraints[n].replace(atom.name, atom.solvator_id)
             for atom in molecule.transformed_atoms:
-              #print "replacing %s with %s" % (atom.solvator_id, atom.olex_id)
+              print "replacing %s with %s" % (atom.solvator_id, atom.olex_id)
               molecule.restraints[n] = molecule.restraints[n].replace(atom.solvator_id, atom.olex_id)
   
         for restraint in molecule.restraints:
@@ -1575,7 +1575,7 @@ class Solvator(PT):
           OV.cmd('refine 5 5')
           if molecule.original_hfix != []:
             molecule.add_hfix()
-          OV.cmd('refine 5 5')
+            OV.cmd('refine 5 5')
           best_R_factor = float(str(olx.CalcR()).split(',')[0])
         copyfile(resfile,original_resfile)
       else:

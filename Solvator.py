@@ -1523,7 +1523,7 @@ class Solvator(PT):
             for molecule in combination:
               molecule.update_coordinates_from_olex_model()
               for atom in molecule.transformed_atoms:
-                if atom.uiso > 0.2:
+                if atom.uiso > (3*average_uiso):
                   print "Rejecting because of Uiso of %s%s" % (atom.symbol, atom.label)
                   reject_solution = True
                   break

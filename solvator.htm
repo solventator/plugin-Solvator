@@ -188,8 +188,8 @@
 
 <!-- #include tool-row-help gui/blocks/tool-row-help.htm;name=SOLVENTS; help_ext=solvator_solvents;1; -->
 
-
-<td>
+<tr>
+<td align = "right">
     $+
      html.Snippet("gui/snippets/input-text",
      "width=40",
@@ -198,10 +198,10 @@
      "onchange=spy.SetParam('solvator.solve.q_peaks', html.GetValue('~name~')) >> spy.solvator.save_to_phil()")
    $-
 </td>
-<td>
+<td align = "left">
 Number of Q-peaks
 </td>
-<td>
+<td align = "right">
     $+
      html.Snippet("gui/snippets/input-text",
      "width=40",
@@ -210,10 +210,12 @@ Number of Q-peaks
      "onchange=spy.SetParam('solvator.solve.minimum_peak_height', html.GetValue('~name~')) >> spy.solvator.save_to_phil()")
    $-
 </td>
-<td>
+<td align = "left">
 Minimum peak height
 </td>
-<td>
+</tr>
+<tr>
+<td align = "right">
     $+
      html.Snippet("gui/snippets/input-text",
      "width=40",
@@ -222,7 +224,7 @@ Minimum peak height
      "onchange=spy.SetParam('solvator.solve.short_contact', html.GetValue('~name~')) >> spy.solvator.save_to_phil()")
    $-
 </td>
-<td colspan=2 align="left">
+<td align="left">
 Short contact
 </td>
 <td>
@@ -233,10 +235,11 @@ Short contact
      "value=spy.GetParam('solvator.solve.max_molecules_in_solution')",
      "onchange=spy.SetParam('solvator.solve.max_molecules_in_solution', html.GetValue('~name~')) >> spy.solvator.save_to_phil()")
    $-
-</td>
+</td align = "right">
 <td>
 Maximum number of molecules in any one void
 </td>
+</tr>
 <!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
 
 

@@ -932,7 +932,7 @@ class Solvator(PT):
     
     number_of_new_peaks_added = len(supercluster)
     
-    while number_of_new_peaks_added > 0:
+    while number_of_new_peaks_added > 0 and (len(supercluster) < 50):
       
       length_of_supercluster_at_start = len(supercluster)
       old_number_of_peaks_to_be_added = 0

@@ -188,6 +188,7 @@
 
 <!-- #include tool-row-help gui/blocks/tool-row-help.htm;name=SOLVENTS; help_ext=solvator_solvents;1; -->
 
+<table>
 <tr>
 <td align = "right">
     $+
@@ -235,11 +236,31 @@ Short contact
      "value=spy.GetParam('solvator.solve.max_molecules_in_solution')",
      "onchange=spy.SetParam('solvator.solve.max_molecules_in_solution', html.GetValue('~name~')) >> spy.solvator.save_to_phil()")
    $-
-</td align = "right">
-<td>
+</td>
+<td align = "left">
 Maximum number of molecules in any one void
 </td>
 </tr>
+</table>
+
+<table>
+<tr>
+<td>
+n
+</td>
+<td>
+    $+
+     html.Snippet("gui/snippets/input-text",
+     "width=40",
+     "name=UISO_RATIO",
+     "value=spy.GetParam('solvator.solve.uiso_ratio')",
+     "onchange=spy.SetParam('solvator.solve.uiso_ratio', html.GetValue('~name~')) >> spy.solvator.save_to_phil()")
+   $-
+</td>
+<td>Molecule acceptable if the Uiso is not greater than n times the average Uiso of the other atoms</td>
+</tr>
+</table>
+
 <!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
 
 
@@ -247,8 +268,8 @@ Maximum number of molecules in any one void
 
   <tr>
   <td><b><a href="spy.solvator.solve()">Run SOLVATOR</a></b></td>
-  <td><b><a href="spy.solvator.restore_original_resfile()">Restore original</a></b></td>
-  <td><b><a href="spy.RunRefinementPrg()">Refine</a></b></td>
+  <td><b><a href="spy.solvator.restore_original_resfile()">Restore original resfile</a></b></td>
+  <td><b><a href="spy.RunRefinementPrg()">Refine (shortcut)</a></b></td>
   </tr>
 <!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
 

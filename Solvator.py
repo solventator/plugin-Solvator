@@ -1401,6 +1401,7 @@ class Solvator(PT):
         total_atoms += 1
   
     average_uiso = total_uiso/total_atoms
+    uiso_ratio = OV.GetParam("solvator.solve.uiso_ratio")
     
     print "Number of host atoms in cell:", len(host_atoms)
         
@@ -1522,7 +1523,7 @@ class Solvator(PT):
             for molecule in combination:
               molecule.update_coordinates_from_olex_model()
               for atom in molecule.transformed_atoms:
-                if atom.uiso > (5*average_uiso):
+                if atom.uiso > (uiso_ratio*average_uiso):
                   print "Rejecting because of Uiso of %s%s. Average Uiso of structure: %.3f, this atom: %.3f" % (atom.symbol, atom.label, average_uiso, atom.uiso)
                   reject_solution = True
                   break

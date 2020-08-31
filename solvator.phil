@@ -20,6 +20,8 @@ solvator{
               .type = int
               min_molecules_in_solution = 2
               .type = int
+              uiso_ratio = 5
+              .type = float
              }
       mc{
               trials = 5

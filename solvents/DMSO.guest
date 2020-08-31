@@ -1,0 +1,12 @@
+dimethylsulfoxide C2H6SO 42 117.5 10 4
+restraints
+SADI  S1 C1 S1 C2
+SADI  0.04 C1 O1 C2 O1
+end restraints
+hydrogens
+HADD 137 C1 C2
+end hydrogens
+O1     0.0000   1.5806   0.4153 
+S1     0.0000   0.1785  -0.5241 
+C1     1.4269  -0.8095   0.2343 
+C2    -1.4269  -0.8095   0.2343

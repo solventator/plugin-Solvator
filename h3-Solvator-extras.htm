@@ -1,0 +1,26 @@
+
+<!-- #include tool-h3 gui\blocks\tool-h3.htm;image=#image;colspan=1;1; -->
+<!-- #include tool-row-help gui/blocks/tool-row-help.htm;name=h3-Solvator_1; help_ext=Solvator_1;1; -->
+
+
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Reload Plugin",
+    "onclick=py.run /Applications/olex2-1.3.app/Contents/MacOS/util/pyUtil/PluginLib/plugin-Solvator/Solvator.py",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Settings",
+    "onclick=spy.EditParams(solvator)",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Open Folder",
+    "onclick=shell /Applications/olex2-1.3.app/Contents/MacOS/util/pyUtil/PluginLib//plugin-Solvator",
+    )$-
+
+
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->

@@ -1,0 +1,12 @@
+tert-butanol C4H9O 41 0.0000 14 5
+restraints
+DFIX  1.39 0.02 O1 C1
+SADI  0.04 O1 C2 O1 C3 O1 C4
+SADI  0.04 C1 C2 C1 C3 C1 C4
+SADI  0.04 C2 C3 C3 C4 C4 C2
+end restraints
+O1     0.2825  16.5296   4.5813 
+C1     0.9432  17.3408   3.5245 
+C2     1.0998  16.3313   2.3935 
+C3     2.2920  17.8677   3.9709 
+C4    -0.0098  18.4574   3.1231

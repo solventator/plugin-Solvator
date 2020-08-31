@@ -1,0 +1,12 @@
+ethanol C2H6O 26 96.92 9 3
+restraints
+DFIX 1.54 C1 C2
+DFIX 1.35 C1 O1
+end restraints
+hfix
+HADD 23 c1
+HADD 137 C2
+end hfix
+O1    -0.9707  -1.1446   0.0000 
+C1    -0.5062   0.2025   0.0000 
+C2     1.0030   0.1599   0.0000

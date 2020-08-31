@@ -1,0 +1,10 @@
+dichloromethane CH2Cl2 42 106.31 5 3
+restraints
+DFIX 1.71 0.02 C1 Cl1 C1 Cl2
+end restraints
+hydrogens
+HADD 23 C1
+end hydrogens
+C1	0	0	0.757228
+Cl1	0	1.475694	-0.214386
+Cl2	0	-1.475694	-0.214386

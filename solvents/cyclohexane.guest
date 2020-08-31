@@ -1,0 +1,14 @@
+cyclohexane C6H12 48 179.61 18 12
+restraints
+SADI  C1 C2 C2 C3 C3 C4 C4 C5 C5 C6 C6 C1
+SADI  0.04 C1 C5 C3 C5 C2 C6 C2 C4 C4 C6 C1 C3
+end restraints
+hfix
+HFIX 23 C1 C2 C3 C4 C5 C6
+end hfix
+C1     1.0774   0.9972   0.2295 
+C2     1.4027  -0.4342  -0.2296 
+C3     0.3251  -1.4313   0.2295 
+C4    -1.0774  -0.9972  -0.2295 
+C5    -1.4027   0.4342   0.2296 
+C6    -0.3251   1.4313  -0.2295

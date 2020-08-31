@@ -1,0 +1,14 @@
+acetone C3H6O 32 122.93 10 4
+restraints
+SADI  0.02 C1 C2 C1 C3
+SADI  0.04 C2 O1 C3 O1
+SADI  0.02 C1 O1
+FLAT  0.05 O1 > C3
+end restraints
+hydrogens
+HADD 133 C1 C3
+end hydrogens
+O1     1.8928   0.9777   2.6833 
+C1     1.6576   2.1605   2.6833 
+C2     1.4831   2.9415   1.4091 
+C3     1.4831   2.9415   3.9574

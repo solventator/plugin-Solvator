@@ -1,0 +1,12 @@
+chloroform CHCl3 58 133.13
+restraints
+SADI  0.02 C1 Cl1 C1 Cl2 C1 Cl3
+SADI  0.04 Cl1 Cl2 Cl2 Cl3 Cl3 Cl1
+end restraints
+hydrogens
+HADD 13 C1
+end hydrogens
+C1	0	0	0.446186
+Cl1	0	1.684901	-0.082494
+Cl2	1.459167	-0.842451	-0.082494
+Cl3	-1.459167	-0.842451	-0.082494

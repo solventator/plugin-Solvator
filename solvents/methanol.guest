@@ -1,0 +1,10 @@
+methanol CH4O 18 67.18
+restraints
+DFIX 1.41 0.02 C1 O1
+end restraints
+hydrogens
+HADD 137 C1
+HADD 147 O1
+end hydrogens
+C1   0.0      0.000000000        0.00000
+O1   0.0      0.0                1.40000

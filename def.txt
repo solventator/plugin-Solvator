@@ -1,0 +1,5 @@
+
+  p_name = Solvator
+  p_htm = Solvator
+  p_img = [("Solvator",'h1'), ("Solvator-Extras",'h3')]
+  p_scope = solvator

@@ -1,0 +1,79 @@
+
+solvator{
+      gui{
+          location = 'tools'
+          .type = str
+          .help = The tab item where the solvator GUI shall appear.
+          before = 'images'
+          .type = str
+          .help = The tool before which the solvator GUI shall appear.
+         }
+      solve{
+              q_peaks = 100
+              .type = int
+              short_contact = 2.30
+              .type = float
+              .help = "2.30 Angstroms has been chosen for the default for the short contact because it is about the shortest distance for X-H in X-ray structures."
+              minimum_peak_height = 1.0
+              .type = float
+              max_molecules_in_solution = 2
+              .type = int
+              min_molecules_in_solution = 2
+              .type = int
+             }
+      mc{
+              trials = 5
+              .type = int
+              fineness = 20
+              .type = int
+              attempts_max = 500
+              .type = int
+              cutoff = 0.01
+              .type = float
+
+             }
+      solvent{
+              toluene = False
+              .type = bool
+              benzene = False
+              .type = bool
+              dichloromethane = False
+              .type = bool
+              hexane = False
+              .type = bool
+              cyclohexane = False
+              .type = bool
+              methanol = False
+              .type = bool
+              ethanol = False
+              .type = bool
+              propanol = False
+              .type = bool
+              butanol = False
+              .type = bool
+              chloroform = False
+              .type = bool
+              acetone = False
+              .type = bool
+              DMSO = False
+              .type = bool
+              ether = False
+              .type = bool
+              pyridine = False
+              .type = bool
+              THF = False
+              .type = bool
+              DMF = False
+              .type = bool
+              acetonitrile = False
+              .type = bool
+              pentane = False
+              .type = bool
+              water = False
+              .type = bool
+              other = ''
+              .type = str
+              user = False
+              .type = bool
+             }
+}

@@ -1502,7 +1502,6 @@ class Solvator(PT):
           results = []
           print "R-factor to beat for cluster %s: %.2f" % (c+1, best_R_factor*100)
           for n, combination in enumerate(copy_combinations):
-            reject_combination = False
             R_factor = self.add_list_of_molecules_to_olex_model(combination, supercluster.multiplicity, add_restraints = False)
             print "R_factor: %.2f" % (R_factor*100)
             result = [combination, R_factor]
@@ -1514,8 +1513,8 @@ class Solvator(PT):
           print sorted_combinations[0]
           
           n = min(3,len(sorted_combinations))
-          reject_solution = False
           for combination in sorted_combinations[0:n]:
+            reject_solution = False
             self.add_list_of_molecules_to_olex_model(combination, supercluster.multiplicity)
             OV.cmd('refine 5 5')
             R_factor = float(str(olx.CalcR()).split(',')[0])
@@ -1523,8 +1522,8 @@ class Solvator(PT):
             for molecule in combination:
               molecule.update_coordinates_from_olex_model()
               for atom in molecule.transformed_atoms:
-                if atom.uiso > (3*average_uiso):
-                  print "Rejecting because of Uiso of %s%s" % (atom.symbol, atom.label)
+                if atom.uiso > (5*average_uiso):
+                  print "Rejecting because of Uiso of %s%s. Average Uiso of structure: %.3f, this atom: %.3f" % (atom.symbol, atom.label, average_uiso, atom.uiso)
                   reject_solution = True
                   break
             

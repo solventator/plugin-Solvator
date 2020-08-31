@@ -1,12 +1,12 @@
 acetonitrile 22 86.72 6 3
 restraints
-DFIX  1.137 0.01 C1 N1
-DFIX  1.456 0.01 C1 C2
-DFIX  2.593 0.02 C2 N1
+DFIX  1.23 0.02 C1 N1
+DFIX  1.46 0.02 C1 C2
+DFIX  2.63 0.02 C2 N1
 end restraints
 hydrogens
 HADD 133 C1
 end hydrogens
-N1     2.8536   2.6323   0.4859 
-C1     2.0124   2.1825   1.1051 
-C2     0.9239   1.6022   1.8781
+C1   0.0   0.0   0.000000
+C2   0.0   0.0   1.461887
+N1   0.0   0.0   2.634765

@@ -1,4 +1,4 @@
-ethanol C2H6O 26 96.92 9 3
+ethanol C2H6O 26 96.92
 restraints
 DFIX 1.54 C1 C2
 DFIX 1.35 C1 O1

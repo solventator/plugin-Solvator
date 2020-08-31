@@ -1466,7 +1466,7 @@ class Solvator(PT):
       print solvent.name
     
     print "Total solvent molecules:", total_solvents
-    #total_solvents += 2 #(because better to look for too many rather than too few clusters)
+    total_solvents += 2 #(because better to look for too many rather than too few clusters)
 
     superclusters = self.get_superclusters(host_atoms, q_peaks, total_solvents, suggested_guests)
     superclusters.sort(key=lambda x: x.electron_count, reverse=True)

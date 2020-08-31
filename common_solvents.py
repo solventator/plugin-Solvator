@@ -18,5 +18,6 @@ common_solvents = {'acetone':(32,122.94),
                    'THF':(40,134.67),
                    'toluene':(50,175.87),
                    'water':(10,29.92),
-                   'user': (0,0.00)
+                   'user': (0,0.00),
+                   'triflate': (97,144.)
                    }

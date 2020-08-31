@@ -167,6 +167,14 @@
     "onclick=spy.SetParam('solvator.solvent.benzene', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
     )
    $-
+  $+
+    html.Snippet("gui/snippets/input-checkbox-td",
+    "name=TRIFLATE_USED",
+    "value=Triflate",
+    "checked=spy.GetParam('solvator.solvent.triflate')",
+    "onclick=spy.SetParam('solvator.solvent.triflate', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+    )
+   $-
 </tr>
 <tr>
 <td>

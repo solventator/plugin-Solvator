@@ -54,7 +54,7 @@ from cctbx import maptbx, miller, uctbx
 import parser
 import scipy.optimize
 
-from common_solvents import common_solvents
+#from common_solvents import common_solvents
 import olexex
 from shutil import copyfile
 from itertools import combinations, combinations_with_replacement, permutations
@@ -966,7 +966,7 @@ class Solvator(PT):
   
   def add_list_of_molecules_to_olex_model(self, molecule_list, multiplicity, add_restraints = True, add_hydrogens = False):
 
-    #print "Using multiplicity of %s" % multiplicity
+    print "Using multiplicity of %s" % multiplicity
     if multiplicity == 1:
       sign = " "
     elif multiplicity >= 2:
@@ -1320,9 +1320,30 @@ class Solvator(PT):
     
     guests_used = []
     
-    for solvent_name in common_solvents:
+    solvent_directory = os.path.join(p_path, "solvents/")
+    
+    print p_path
+    print solvent_directory
+    
+    file_list = os.listdir(solvent_directory)
+    
+    search_pattern = re.compile(r'(.*).guest')
+    
+    available_solvents = []
+    
+    for solvent_file in file_list:
+      m = search_pattern.match(solvent_file)
+      if m:
+        solvent_name = m.group(1)
+        available_solvents.append(solvent_name)
+    
+    print available_solvents
+    
+    for solvent_name in available_solvents:
+      print solvent_name
       used = OV.GetParam('solvator.solvent' + '.' + str(solvent_name))
       if used == True:
+        print "used"
         thisguest = guest.Guest(solvent_name, 0.5, p_path, SFAC_BY_SYMBOL, CART_TO_FRAC)
         guests_used.append(thisguest)
     OV.Refresh()
@@ -1552,7 +1573,8 @@ class Solvator(PT):
         self.add_list_of_molecules_to_olex_model(supercluster.solution, multiplicity = supercluster.multiplicity)
         for molecule in supercluster.solution:
           OV.cmd('refine 5 5')
-          molecule.add_hfix()
+          if molecule.original_hfix != []:
+            molecule.add_hfix()
           OV.cmd('refine 5 5')
           best_R_factor = float(str(olx.CalcR()).split(',')[0])
         copyfile(resfile,original_resfile)

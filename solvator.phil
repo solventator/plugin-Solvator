@@ -73,8 +73,8 @@ solvator{
               .type = bool
               water = False
               .type = bool
-              other = ''
-              .type = str
+              triflate = False
+              .type = bool
               user = False
               .type = bool
              }

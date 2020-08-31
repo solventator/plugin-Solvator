@@ -1460,12 +1460,13 @@ class Solvator(PT):
     total_solvents = int(np.ceil(total_solvents))
 
     
-    suggested_guests = list(set(list(suggested_guests)))
+    suggested_guests = list(set(list(suggested_guests))) # removes duplicates
+    print "Suggested guests for your structure:"
     for solvent in suggested_guests:
       print solvent.name
     
     print "Total solvent molecules:", total_solvents
-    total_solvents += 2 #(because better to look for too many rather than too few clusters)
+    #total_solvents += 2 #(because better to look for too many rather than too few clusters)
 
     superclusters = self.get_superclusters(host_atoms, q_peaks, total_solvents, suggested_guests)
     superclusters.sort(key=lambda x: x.electron_count, reverse=True)

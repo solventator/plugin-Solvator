@@ -3,10 +3,11 @@ restraints
 DFIX 1.54 C1 C2
 DFIX 1.35 C1 O1
 end restraints
-hfix
-HADD 23 c1
+hydrogens
+HADD 23 C1
 HADD 137 C2
-end hfix
-O1    -0.9707  -1.1446   0.0000 
-C1    -0.5062   0.2025   0.0000 
-C2     1.0030   0.1599   0.0000
+HADD 147 O1
+end hydrogens
+O1   -1.234524   -0.261315   -0.104162
+C1   -0.08537    0.561501    0.046666
+C2   1.206944    -0.239309   -0.023172

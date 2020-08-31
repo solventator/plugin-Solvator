@@ -1495,7 +1495,12 @@ class Solvator(PT):
         best_R_factor = R_host
         for i in range(1,max_number+1):
           my_combinations = []
-          my_list = combinations(supercluster.starting_positions, i)
+          if i ==1:
+            print supercluster.starting_positions
+            my_list = combinations(supercluster.starting_positions, i)
+          else:
+            print reduced_list
+            my_list = combinations(reduced_list, i)
           my_combinations += my_list
         
           copy_combinations = copy.deepcopy(my_combinations)
@@ -1511,7 +1516,14 @@ class Solvator(PT):
           results.sort(key = itemgetter(1))
           print results[0][1]
           sorted_combinations = [result[0] for result in results]
-          print sorted_combinations[0]
+          if i == 1:
+            reduced_list = []
+            number = min(len(sorted_combinations), 20)
+            for j in range(0,number):
+              reduced_list += sorted_combinations[j]
+          #print sorted_combinations[0]
+          else:
+            print len(sorted_combinations)
           
           n = min(3,len(sorted_combinations))
           for combination in sorted_combinations[0:n]:

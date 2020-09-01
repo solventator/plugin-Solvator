@@ -1,15 +1,13 @@
-tetrahydrofuran C4H8O 42 134.66 13 5
+tetrahydrofuran C4H8O 42 134.66
 restraints
-SADI  0.02  C1 C2  C2 C3  C3 C4
-SADI  0.02  O1 C1  O1 C4
-SADI  0.04  O1 C2  O1 C3
-SADI  0.04  C2 C4  C1 C3
+DFIX 1.42 0.02 O1 C1 O1 C4
+DFIX 1.52 0.02 C1 C2 C2 C3 C3 C4
 end restraints
-hfix
+hydrogens
 HADD 23 C1 C2 C3 C4
-end hfix
-O1     0.0000  -1.2519   0.0000 
-C1    -1.1698  -0.4290  -0.1308 
-C2    -0.7342   0.9959   0.2250 
-C3     0.7342   0.9959  -0.2251 
-C4     1.1698  -0.4290   0.1308
+end hydrogens
+O1      -0.003526   -1.251191   -0.006815
+C1       -1.160547   -0.419017   -0.137067
+C2       -0.719434    0.993245    0.244942
+C3        0.728573    0.985533   -0.249095
+C4        1.155270   -0.426639    0.145933

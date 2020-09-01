@@ -1110,108 +1110,138 @@ class Solvator(PT):
     
     for molecule in guest_molecules:
       
-      first_guest_atom = molecule.transformed_atoms[0]
-      second_guest_atom = molecule.transformed_atoms[1]
-      third_guest_atom = molecule.transformed_atoms[2]
-  
-      guest_distance1_2  = self.calculate_distance(first_guest_atom, second_guest_atom)
-      guest_distance1_3 = self.calculate_distance(first_guest_atom, third_guest_atom)
-      guest_distance2_3 = self.calculate_distance(second_guest_atom, third_guest_atom)
-      guest_angle = self.calculate_angle_between_atoms(third_guest_atom, second_guest_atom, first_guest_atom)
-      
-      print "Guest distances: %.2f, %.2f, %.2f" % (guest_distance1_2, guest_distance1_3, guest_distance2_3)
-      number= len(q_peaks)
-      
-      """"
-      Find nearby q-peaks
-      """
-      
       #Sort the qpeaks list such that we can skip over starting duplicates
       
       q_peaks = sorted(q_peaks, key=lambda x: x.label, reverse=False)
       print "Sorted peaks:"
-
       for atom in q_peaks:
-        print "%s%s" % (atom.symbol, atom.label)      
-  
-      for i in range(number):
-        #print "i:%s (%s%s)" % (i, q_peaks[i].symbol, q_peaks[i].label)
-        if (i > 0) and (q_peaks[i].label == q_peaks[i-1].label): # just skip over atoms with the same label
-          continue
-  
-        translation = q_peaks[i].coords - first_guest_atom.coords
-        molecule.translate(translation)
-        [a],[b],[c], = np.dot(FRAC_TO_CART, q_peaks[i].coords)
+        print "%s%s" % (atom.symbol, atom.label)
+      
+      number= len(q_peaks)
+      
+      # Now what we do depends on how many atoms are in the moelcule. 
+      
+      if len(molecule.transformed_atoms) == 1:
+        first_guest_atom = molecule.transformed_atoms[0]
         
-        for j in [x for x in range(number) if x != i]:
-          q_peak_distance = self.calculate_distance(q_peaks[i], q_peaks[j])
-          if np.isclose(q_peak_distance, guest_distance1_2, atol = 0.4):
-            #print "Within range: j:%s (%s%s) is %.3f Angstroms from i(%s) (%s%s) (should be %.2f)" % (j, q_peaks[j].symbol, q_peaks[j].label, q_peak_distance, i, q_peaks[i].symbol, q_peaks[i].label, guest_distance1_2)
-            second_q_peak = q_peaks[j]
-            q_peak_vector1_2 = self.get_vector(q_peaks[j], q_peaks[i])
-            guest_vector1_2 = self.get_vector(second_guest_atom, first_guest_atom)
-            
-            rotation_angle = self.calculate_angle_between_atoms(q_peaks[j], q_peaks[i], second_guest_atom)
-  
-            u,v,w = np.cross(q_peak_vector1_2, guest_vector1_2)
-            
-            for atom in molecule.transformed_atoms:
-              [x],[y],[z] = np.dot(FRAC_TO_CART, atom.coords )
-              cart_coords = self.calculate_rotation(x, y, z, a, b, c, u, v, w, -rotation_angle)
-              atom.coords = np.dot(CART_TO_FRAC, cart_coords)
-          
-            for k in [y for y in range(number) if (y != i and y!= j)]:
-              q_peak_distance = self.calculate_distance(q_peaks[j], q_peaks[k])
-              q_peak_angle = self.calculate_angle_between_atoms(q_peaks[k], q_peaks[j], q_peaks[i])
-  
-              if (np.isclose(q_peak_distance, guest_distance2_3, atol = 0.4)) and np.isclose(q_peak_angle,guest_angle,atol = 0.52):
-                #print "Within range: k:%s (%s%s) is %.3f Angstroms from j:%s (%s%s) (should be %.2f)" % (k, q_peaks[k].symbol, q_peaks[k].label, q_peak_distance, j, q_peaks[j].symbol, q_peaks[j].label, guest_distance2_3)
-                third_q_peak = q_peaks[k]
-                
-                normal1 = self.calculate_normal(q_peaks[i], q_peaks[j], q_peaks[k])
-                normal2 = self.calculate_normal(q_peaks[i], q_peaks[j], third_guest_atom)
-                rotation_angle = self.calculate_angle_between_planes(normal1, normal2)
-                
-                u,v,w = np.cross(normal1, normal2)
-                
-                for atom in molecule.transformed_atoms:
-                  [x],[y],[z] = np.dot(FRAC_TO_CART, atom.coords )
-                  cart_coords = self.calculate_rotation(x, y, z, a, b, c, u, v, w, -rotation_angle)
-                  atom.coords = np.dot(CART_TO_FRAC, cart_coords)
-
-                if self.is_chemically_sensible(molecule.transformed_atoms,
-                                               host_atoms): 
-                  oriented_molecule = copy.deepcopy(molecule)
-                  solutions.append(oriented_molecule)
-                  
-                  #copyfile(original_resfile, resfile)
-                  #olx.Atreap(resfile)
-                  #self.add_list_of_molecules_to_olex_model([oriented_molecule], supercluster.multiplicity)
-                  #R_current = float(str(olx.CalcR()).split(',')[0])
-                  #result = [R_current, oriented_molecule]
-                  #solutions.append(result)
-                #else:
-                  #print "Not chemically sensible"
-                #OV.Refresh()
+        for i in range(number):
+          #print "i:%s (%s%s)" % (i, q_peaks[i].symbol, q_peaks[i].label)
+          if (i > 0) and (q_peaks[i].label == q_peaks[i-1].label): # just skip over atoms with the same label
+            continue
     
-    ##This cheats by removing duplicates based on R-factors alone It would presumably be quicker to not compute duplicates in the first place.
-    #if len(solutions) == 0:
-      #print "Cannot find a good starting position for the chosen solvents"
-      #return None
-    #elif len(solutions) == 1:
-      #solutions = [solutions[0][1]]
-      #return solutions
-    #else:
-      #print "Sorting solutions..."
-      #sorted_solutions = sorted(solutions, key = itemgetter(0))
-      ##print "Number of solutions before removing duplicates: %s" % len(sorted_solutions)
-      #solutions = []
-      #solutions.append(sorted_solutions[0][1])
-      #print "0 %.3f (%s)" %(sorted_solutions[0][0], sorted_solutions[0][1].name)
-      #for n in range(1,len(sorted_solutions)):
-        #solutions.append(sorted_solutions[n][1])
-      #print "...done."
-      #print "Number of solutions after removing %s duplicates: %s" % (len(sorted_solutions) - len(solutions), len( solutions))
+          translation = q_peaks[i].coords - first_guest_atom.coords
+          molecule.translate(translation)
+          [a],[b],[c], = np.dot(FRAC_TO_CART, q_peaks[i].coords)
+          
+          if self.is_chemically_sensible(molecule.transformed_atoms,
+                                         host_atoms): 
+            oriented_molecule = copy.deepcopy(molecule)
+            solutions.append(oriented_molecule)        
+      
+      if len(molecule.transformed_atoms) == 2:
+        first_guest_atom = molecule.transformed_atoms[0]
+        second_guest_atom = molecule.transformed_atoms[1]
+        guest_distance1_2  = self.calculate_distance(first_guest_atom, second_guest_atom)
+        
+        print "Bond length in guest: %.2f" % (guest_distance1_2)
+        
+        for i in range(number):
+          #print "i:%s (%s%s)" % (i, q_peaks[i].symbol, q_peaks[i].label)
+          if (i > 0) and (q_peaks[i].label == q_peaks[i-1].label): # just skip over atoms with the same label
+            continue
+    
+          translation = q_peaks[i].coords - first_guest_atom.coords
+          molecule.translate(translation)
+
+          
+          for j in [x for x in range(number) if x != i]:
+            q_peak_distance = self.calculate_distance(q_peaks[i], q_peaks[j])
+            if np.isclose(q_peak_distance, guest_distance1_2, atol = 0.4):
+              #print "Within range: j:%s (%s%s) is %.3f Angstroms from i(%s) (%s%s) (should be %.2f)" % (j, q_peaks[j].symbol, q_peaks[j].label, q_peak_distance, i, q_peaks[i].symbol, q_peaks[i].label, guest_distance1_2)
+              second_q_peak = q_peaks[j]
+              q_peak_vector1_2 = self.get_vector(q_peaks[j], q_peaks[i])
+              guest_vector1_2 = self.get_vector(second_guest_atom, first_guest_atom)
+              
+              rotation_angle = self.calculate_angle_between_atoms(q_peaks[j], q_peaks[i], second_guest_atom)
+    
+              u,v,w = np.cross(q_peak_vector1_2, guest_vector1_2)
+              
+              for atom in molecule.transformed_atoms:
+                [x],[y],[z] = np.dot(FRAC_TO_CART, atom.coords )
+                cart_coords = self.calculate_rotation(x, y, z, a, b, c, u, v, w, -rotation_angle)
+                atom.coords = np.dot(CART_TO_FRAC, cart_coords)
+              
+              if self.is_chemically_sensible(molecule.transformed_atoms,
+                                             host_atoms): 
+                oriented_molecule = copy.deepcopy(molecule)
+                solutions.append(oriented_molecule)
+      
+      if len(molecule.transformed_atoms) >= 3:
+      
+        first_guest_atom = molecule.transformed_atoms[0]
+        second_guest_atom = molecule.transformed_atoms[1]
+        third_guest_atom = molecule.transformed_atoms[2]
+    
+        guest_distance1_2  = self.calculate_distance(first_guest_atom, second_guest_atom)
+        guest_distance1_3 = self.calculate_distance(first_guest_atom, third_guest_atom)
+        guest_distance2_3 = self.calculate_distance(second_guest_atom, third_guest_atom)
+        guest_angle = self.calculate_angle_between_atoms(third_guest_atom, second_guest_atom, first_guest_atom)
+        
+        print "Guest distances: %.2f, %.2f, %.2f" % (guest_distance1_2, guest_distance1_3, guest_distance2_3)
+        
+        """"
+        Find nearby q-peaks
+        """
+    
+        for i in range(number):
+          #print "i:%s (%s%s)" % (i, q_peaks[i].symbol, q_peaks[i].label)
+          if (i > 0) and (q_peaks[i].label == q_peaks[i-1].label): # just skip over atoms with the same label
+            continue
+    
+          translation = q_peaks[i].coords - first_guest_atom.coords
+          molecule.translate(translation)
+          [a],[b],[c], = np.dot(FRAC_TO_CART, q_peaks[i].coords)
+          
+          for j in [x for x in range(number) if x != i]:
+            q_peak_distance = self.calculate_distance(q_peaks[i], q_peaks[j])
+            if np.isclose(q_peak_distance, guest_distance1_2, atol = 0.4):
+              #print "Within range: j:%s (%s%s) is %.3f Angstroms from i(%s) (%s%s) (should be %.2f)" % (j, q_peaks[j].symbol, q_peaks[j].label, q_peak_distance, i, q_peaks[i].symbol, q_peaks[i].label, guest_distance1_2)
+              second_q_peak = q_peaks[j]
+              q_peak_vector1_2 = self.get_vector(q_peaks[j], q_peaks[i])
+              guest_vector1_2 = self.get_vector(second_guest_atom, first_guest_atom)
+              
+              rotation_angle = self.calculate_angle_between_atoms(q_peaks[j], q_peaks[i], second_guest_atom)
+    
+              u,v,w = np.cross(q_peak_vector1_2, guest_vector1_2)
+              
+              for atom in molecule.transformed_atoms:
+                [x],[y],[z] = np.dot(FRAC_TO_CART, atom.coords )
+                cart_coords = self.calculate_rotation(x, y, z, a, b, c, u, v, w, -rotation_angle)
+                atom.coords = np.dot(CART_TO_FRAC, cart_coords)
+            
+              for k in [y for y in range(number) if (y != i and y!= j)]:
+                q_peak_distance = self.calculate_distance(q_peaks[j], q_peaks[k])
+                q_peak_angle = self.calculate_angle_between_atoms(q_peaks[k], q_peaks[j], q_peaks[i])
+    
+                if (np.isclose(q_peak_distance, guest_distance2_3, atol = 0.4)) and np.isclose(q_peak_angle,guest_angle,atol = 0.52):
+                  #print "Within range: k:%s (%s%s) is %.3f Angstroms from j:%s (%s%s) (should be %.2f)" % (k, q_peaks[k].symbol, q_peaks[k].label, q_peak_distance, j, q_peaks[j].symbol, q_peaks[j].label, guest_distance2_3)
+                  third_q_peak = q_peaks[k]
+                  
+                  normal1 = self.calculate_normal(q_peaks[i], q_peaks[j], q_peaks[k])
+                  normal2 = self.calculate_normal(q_peaks[i], q_peaks[j], third_guest_atom)
+                  rotation_angle = self.calculate_angle_between_planes(normal1, normal2)
+                  
+                  u,v,w = np.cross(normal1, normal2)
+                  
+                  for atom in molecule.transformed_atoms:
+                    [x],[y],[z] = np.dot(FRAC_TO_CART, atom.coords )
+                    cart_coords = self.calculate_rotation(x, y, z, a, b, c, u, v, w, -rotation_angle)
+                    atom.coords = np.dot(CART_TO_FRAC, cart_coords)
+  
+                  if self.is_chemically_sensible(molecule.transformed_atoms,
+                                                 host_atoms): 
+                    oriented_molecule = copy.deepcopy(molecule)
+                    solutions.append(oriented_molecule)
       
       return solutions
 

@@ -64,7 +64,7 @@ class Guest():
                     length_of_dict = len(SFAC_by_symbol)
                     SFAC_by_symbol[atom_symbol] = (length_of_dict, 4) # adds the number 4 to the unit line. Perhaps update to count actual total number of atoms in file?
                     #SFAC_BY_NUMBER[length_of_dict] = (atom_symbol, 4)
-                    print 'Element', atom[0], 'appended to SFAC dictionaries'
+                    print 'Element', atom.symbol, 'appended to SFAC dictionaries'
                 atom_sfac = SFAC_by_symbol[atom_symbol][0]
                 x_cart = float(line[1])
                 y_cart = float(line[2])

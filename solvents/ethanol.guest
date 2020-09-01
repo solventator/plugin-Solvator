@@ -1,7 +1,7 @@
 ethanol C2H6O 26 96.92
 restraints
-DFIX 1.54 C1 C2
-DFIX 1.35 C1 O1
+DFIX 1.52 C1 C2
+DFIX 1.42 C1 O1
 end restraints
 hydrogens
 HADD 23 C1

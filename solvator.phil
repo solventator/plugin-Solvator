@@ -49,7 +49,7 @@ solvator{
               .type = bool
               ethanol = False
               .type = bool
-              propanol = False
+              isopropanol = False
               .type = bool
               butanol = False
               .type = bool
@@ -75,7 +75,33 @@ solvator{
               .type = bool
               triflate = False
               .type = bool
-              user = False
+              BF4 = False
+              .type = bool
+              PF6 = False
+              .type = bool
+              perchlorate = False
+              .type = bool
+              sulfate = False
+              .type = bool
+              bromide = False
+              .type = bool
+              iodide = False
+              .type = bool
+              chloride = False
+              .type = bool
+              carbonate = False
+              .type = bool
+              NMe4 = False
+              .type = bool
+              other1 = False
+              .type = bool
+              other2 = False
+              .type = bool
+              other3 = False
+              .type = bool
+              other4 = False
+              .type = bool
+              other5 = False
               .type = bool
              }
 }

@@ -96,6 +96,9 @@ $+
      the minimum distance between atoms in different disordered clusters.
  <br>
  <b> Maximum number of molecules in any one void </b>. The program time will increase expontentially with this number!
+ <br>
+ <b> n </b> If you expect the molecules in your void to be very diffuse compared to your main structure, increase this number.
+    Molecules with Uiso values higher than this ratio will be discarded.
    ")
 $-
 
@@ -273,144 +276,143 @@ $-
 <td colspan = 5>Ions</td>
 </tr>
 <tr>
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=BF4_USED",
-    "value=BF4",
-    "checked=spy.GetParam('solvator.solvent.BF4')",
-    "onclick=spy.SetParam('solvator.solvent.BF4', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=PF6_USED",
-    "value=PF6",
-    "checked=spy.GetParam('solvator.solvent.PF6')",
-    "onclick=spy.SetParam('solvator.solvent.PF6', html.GetState('~name~')) >> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=SULFATE_USED",
-    "value=Sulfate",
-    "checked=spy.GetParam('solvator.solvent.sulfate')",
-    "onclick=spy.SetParam('solvator.solvent.sulfate', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=CARBONATE_USED",
-    "value=Carbonate",
-    "checked=spy.GetParam('solvator.solvent.carbonate')",
-    "onclick=spy.SetParam('solvator.solvent.carbonate', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=TRIFLATE_USED",
-    "value=Triflate",
-    "checked=spy.GetParam('solvator.solvent.triflate')",
-    "onclick=spy.SetParam('solvator.solvent.triflate', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=BF4_USED",
+   "value=BF4",
+   "checked=spy.GetParam('solvator.solvent.BF4')",
+   "onclick=spy.SetParam('solvator.solvent.BF4', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+   )
+  $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=PF6_USED",
+   "value=PF6",
+   "checked=spy.GetParam('solvator.solvent.PF6')",
+   "onclick=spy.SetParam('solvator.solvent.PF6', html.GetState('~name~')) >> spy.solvator.save_to_phil()"
+   )
+  $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=SULFATE_USED",
+   "value=Sulfate",
+   "checked=spy.GetParam('solvator.solvent.sulfate')",
+   "onclick=spy.SetParam('solvator.solvent.sulfate', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+   )
+  $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=CARBONATE_USED",
+   "value=Carbonate",
+   "checked=spy.GetParam('solvator.solvent.carbonate')",
+   "onclick=spy.SetParam('solvator.solvent.carbonate', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+   )
+  $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=TRIFLATE_USED",
+   "value=Triflate",
+   "checked=spy.GetParam('solvator.solvent.triflate')",
+   "onclick=spy.SetParam('solvator.solvent.triflate', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+   )
+  $-
 </tr>
 <tr>
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=PERCHLORATE_USED",
-    "value=Perchlorate",
-    "checked=spy.GetParam('solvator.solvent.perchlorate')",
-    "onclick=spy.SetParam('solvator.solvent.perchlorate', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=IODIDE_USED",
-    "value=Iodide",
-    "checked=spy.GetParam('solvator.solvent.iodide')",
-    "onclick=spy.SetParam('solvator.solvent.iodide', html.GetState('~name~')) >> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=BROMIDE_USED",
-    "value=Bromide",
-    "checked=spy.GetParam('solvator.solvent.bromide')",
-    "onclick=spy.SetParam('solvator.solvent.bromide', html.GetState('~name~')) >> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=CHLORIDE_USED",
-    "value=Chloride",
-    "checked=spy.GetParam('solvator.solvent.chloride')",
-    "onclick=spy.SetParam('solvator.solvent.chloride', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=NME4_USED",
-    "value=NMe4",
-    "checked=spy.GetParam('solvator.solvent.NMe4')",
-    "onclick=spy.SetParam('solvator.solvent.NMe4', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=PERCHLORATE_USED",
+   "value=Perchlorate",
+   "checked=spy.GetParam('solvator.solvent.perchlorate')",
+   "onclick=spy.SetParam('solvator.solvent.perchlorate', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+   )
+  $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=IODIDE_USED",
+   "value=Iodide",
+   "checked=spy.GetParam('solvator.solvent.iodide')",
+   "onclick=spy.SetParam('solvator.solvent.iodide', html.GetState('~name~')) >> spy.solvator.save_to_phil()"
+   )
+  $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=BROMIDE_USED",
+   "value=Bromide",
+   "checked=spy.GetParam('solvator.solvent.bromide')",
+   "onclick=spy.SetParam('solvator.solvent.bromide', html.GetState('~name~')) >> spy.solvator.save_to_phil()"
+   )
+  $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=CHLORIDE_USED",
+   "value=Chloride",
+   "checked=spy.GetParam('solvator.solvent.chloride')",
+   "onclick=spy.SetParam('solvator.solvent.chloride', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+   )
+  $-
+ $+
+   html.Snippet("gui/snippets/input-checkbox-td",
+   "name=NME4_USED",
+   "value=NMe4",
+   "checked=spy.GetParam('solvator.solvent.NMe4')",
+   "onclick=spy.SetParam('solvator.solvent.NMe4', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+   )
+  $-
 </tr>
-
 <!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
 
 <!-- #include tool-row-help gui/blocks/tool-row-help.htm;name="OTHERS" ;help_ext="Edit your own..."; helpTxt=$GetVar(OTHERS); 1; -->
 
-<tr>
     $+
     html.Snippet(GetVar(default_link),
-    "value=Edit your own!",
-    "onclick=shell /Applications/olex2-1.3.app/Contents/MacOS/util/pyUtil/PluginLib//plugin-Solvator/solvents",
+    "value=Edit molecules...",
+    "onclick=shell GetVar(solvator_plugin_path)/solvents",
     )$-
-</tr>
+
+<!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
+<!-- #include tool-row gui/blocks/tool-row.htm; 1; -->
 
 
-<tr>
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=OTHER1_USED",
-    "value=Other 1",
-    "checked=spy.GetParam('solvator.solvent.other1')",
-    "onclick=spy.SetParam('solvator.solvent.other1', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=OTHER2_USED",
-    "value=Other 2",
-    "checked=spy.GetParam('solvator.solvent.other2')",
-    "onclick=spy.SetParam('solvator.solvent.other2', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=OTHER3_USED",
-    "value=Other 3",
-    "checked=spy.GetParam('solvator.solvent.other3')",
-    "onclick=spy.SetParam('solvator.solvent.other3', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=OTHER4_USED",
-    "value=Other 4",
-    "checked=spy.GetParam('solvator.solvent.other4')",
-    "onclick=spy.SetParam('solvator.solvent.other4', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
-  $+
-    html.Snippet("gui/snippets/input-checkbox-td",
-    "name=OTHER5_USED",
-    "value=Other 5",
-    "checked=spy.GetParam('solvator.solvent.other5')",
-    "onclick=spy.SetParam('solvator.solvent.other5', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
-    )
-   $-
+$+
+  html.Snippet("gui/snippets/input-checkbox-td",
+  "name=OTHER1_USED",
+  "value=Other 1",
+  "checked=spy.GetParam('solvator.solvent.other1')",
+  "onclick=spy.SetParam('solvator.solvent.other1', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+  )
+ $-
+$+
+  html.Snippet("gui/snippets/input-checkbox-td",
+  "name=OTHER2_USED",
+  "value=Other 2",
+  "checked=spy.GetParam('solvator.solvent.other2')",
+  "onclick=spy.SetParam('solvator.solvent.other2', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+  )
+ $-
+$+
+  html.Snippet("gui/snippets/input-checkbox-td",
+  "name=OTHER3_USED",
+  "value=Other 3",
+  "checked=spy.GetParam('solvator.solvent.other3')",
+  "onclick=spy.SetParam('solvator.solvent.other3', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+  )
+ $-
+$+
+  html.Snippet("gui/snippets/input-checkbox-td",
+  "name=OTHER4_USED",
+  "value=Other 4",
+  "checked=spy.GetParam('solvator.solvent.other4')",
+  "onclick=spy.SetParam('solvator.solvent.other4', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+  )
+ $-
+$+
+  html.Snippet("gui/snippets/input-checkbox-td",
+  "name=OTHER5_USED",
+  "value=Other 5",
+  "checked=spy.GetParam('solvator.solvent.other5')",
+  "onclick=spy.SetParam('solvator.solvent.other5', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
+  )
+ $-
 </tr>
 
 <!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
@@ -493,12 +495,11 @@ n
 <!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
 
 
-<!-- #include tool-row-help gui/blocks/tool-row-help.htm;name=solvator_2; help_ext=solvator_2;1; -->
+<!-- #include tool-row gui/blocks/tool-row.htm; 1; -->
 
   <tr>
-  <td><b><a href="spy.solvator.solve()">Run SOLVATOR</a></b></td>
+  <td><b><h3><a href="spy.solvator.solve()">Run SOLVATOR</a></h2></b></td>
   <td><b><a href="spy.solvator.restore_original_resfile()">Restore original resfile</a></b></td>
-  <td><b><a href="spy.RunRefinementPrg()">Refine (shortcut)</a></b></td>
   </tr>
 <!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
 

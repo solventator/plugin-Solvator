@@ -966,7 +966,7 @@ class Solvator(PT):
   
   def add_list_of_molecules_to_olex_model(self, molecule_list, multiplicity, add_restraints = True, add_hydrogens = False):
 
-    print "Using multiplicity of %s" % multiplicity
+    #print "Using multiplicity of %s" % multiplicity
     if multiplicity == 1:
       sign = " "
     elif multiplicity >= 2:
@@ -1131,7 +1131,7 @@ class Solvator(PT):
     
           translation = q_peaks[i].coords - first_guest_atom.coords
           molecule.translate(translation)
-          [a],[b],[c], = np.dot(FRAC_TO_CART, q_peaks[i].coords)
+
           
           if self.is_chemically_sensible(molecule.transformed_atoms,
                                          host_atoms): 
@@ -1152,6 +1152,7 @@ class Solvator(PT):
     
           translation = q_peaks[i].coords - first_guest_atom.coords
           molecule.translate(translation)
+          [a],[b],[c], = np.dot(FRAC_TO_CART, q_peaks[i].coords)
 
           
           for j in [x for x in range(number) if x != i]:

@@ -1,9 +1,107 @@
+$+
+ SetVar(SOLVENTS,
+   "
+ <br>
+ Here you can select the solvents which you know or suspect to be in your structure.
+ You can select as many as you like, but performance will be extremely slow if more
+  than three are selected.<br>
+ 
+ If you know only one type of molecule is present, but you are not sure which one,
+ it is better to perform multiple runs with one molecules selected, than one run with
+ multiple molecules selected.<br>
+   ")
+ $-
+
+$+
+ SetVar(IONS,
+   "
+   Take care when selecting ions for your structure. Solvator fits only the
+   electron density and does not check that the charge is sensible.
+   <br>You should satisy yourself that Solvator has suggested a composition which
+   agrees with the other molecules/ions in your structure.
+   ")
+ $-
+ 
+$+
+ SetVar(OTHERS,
+   "
+    <br>In the folder 'solvents', there are the coordinates and instruction files used by Solvator.
+    There are an additional five files, named:
+    <br>
+    
+    <br>'Other1.guest'
+    <br>'Other2.guest'
+    <br>'Other3.guest'
+    <br>'Other4.guest'
+    <br>'Other5.guest'
+    <br>
+   
+    <br>These files can be edited by you for your own use. Bear in mind that
+     Solvator only really works with rigid molecules, so if you would like
+     to model a structure with multiple conformations, you could put individual
+     conformations into these five files and solvator will treat them as two
+     separate molecules.
+    
+    <br>The file syntax is as follows:
+    <br>
+    <br>
+    <b>
+    <br> name electron_count molecular_volume
+    <br>restraints
+    <br>...
+    <br>...
+    <br>end restraints
+    <br>hydrogens
+    <br>...
+    <br>...
+    <br>end hydrogens
+    <br>atom_name x y z
+    <br>atom_name x y z
+    </b>
+    
+    <br>
+    <br><b>name</b>: Name of your molecule. Call it whatever you like.
+    <br><b>electron_count</b>: a integer value, the total number of electrons in your molecule
+    <br><b>molecular_volume</b>: the volume of the molecule. This can be calculated from the molar volume
+        (frequently listed on Wikipedia!). Gaussian will also calculate it with the 
+        keyword 'Volume'.
+    <br> <b>restraints</b>: A list of restraints, exactly as woudl be used in ShelXL, e.g. DFIX, SADI etc. 
+       Put each restraint on a separate line, and use the atom numbering from the same file.
+       The section is ended with <b>end restraints</b> on a new line.
+    <br> 
+    <br> <b>hydrogens</b>: Use the instructions to add hydrogens to your molecule. 
+       The ShelXL instruction HFIX or the Olex 2 compatible HADD may be used.
+       This section may be left blank if hydrogens are not present or not desired, but the section itself must be present.
+       The section is ended with the command <b>end hydrogens</b>
+    <br>
+    <br><b>atoms</b>: A list of atoms with Cartesian coordinates. The coordinates 
+      must be given as floating-point variables (i.e. 0.0, not 0). Atom names should
+       be unique within the file, and consist of a symbol followed by a number, e.g. Br2.
+       It does not matter if names coincide with names used in your main model, because
+      the atoms will be renamed when they are added.
+   ")
+$-
+ 
+$+
+ SetVar(VARIABLES,
+   "
+ <br>
+ <b> Minimum Q-peak height </b> Q-peaks below this threshold will be ignored. 
+     Choosing a lower value will mean the program will take longer, but will have more flexibility.
+ <br>
+ <b> Number of Q-peaks </b> Only the first number of Q-peaks will be considered. 
+     With a very large number of Q-peaks, whether they are considered anyway will depend on the minimum Q-peak height chosen.
+ <br>
+ <b> Short contact </b> Any atom in the cluster closer than this value to a main structure will not be considered. This is also
+     the minimum distance between atoms in different disordered clusters.
+ <br>
+ <b> Maximum number of molecules in any one void </b>. The program time will increase expontentially with this number!
+   ")
+$-
+
 <!-- #include tool-top gui/blocks/tool-top.htm;image=#image; onclick==#onclick;1; -->
 
-<!-- #include tool-row-help gui/blocks/tool-row-help.htm;name=Guest help_ext=SOLVENTS;1; -->
-
-
-
+<!-- #include tool-row-help gui/blocks/tool-row-help.htm;name="SOLVENTS" ;help_ext="Solvents"; helpTxt=$GetVar(SOLVENTS); 1; -->
 
 <tr>
 <td colspan = 4>Solvents</td>
@@ -138,7 +236,7 @@
   $+
     html.Snippet("gui/snippets/input-checkbox-td",
     "name=BUTANOL_USED",
-    "value=Butanol",
+    "value=n-butanol",
     "checked=spy.GetParam('solvator.solvent.butanol')",
     "onclick=spy.SetParam('solvator.solvent.butanol', html.GetState('~name~'))>> spy.solvator.save_to_phil()"
     )
@@ -168,6 +266,9 @@
     )
    $-
 </tr>
+<!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
+<!-- #include tool-row-help gui/blocks/tool-row-help.htm;name="IONS" ;help_ext="Ions"; helpTxt=$GetVar(IONS); 1; -->
+
 <tr>
 <td colspan = 5>Ions</td>
 </tr>
@@ -255,6 +356,11 @@
     )
    $-
 </tr>
+
+<!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui/blocks/tool-row-help.htm;name="OTHERS" ;help_ext="Edit your own..."; helpTxt=$GetVar(OTHERS); 1; -->
+
 <tr>
     $+
     html.Snippet(GetVar(default_link),
@@ -262,6 +368,8 @@
     "onclick=shell /Applications/olex2-1.3.app/Contents/MacOS/util/pyUtil/PluginLib//plugin-Solvator/solvents",
     )$-
 </tr>
+
+
 <tr>
   $+
     html.Snippet("gui/snippets/input-checkbox-td",
@@ -307,7 +415,7 @@
 
 <!-- #include row_table_off gui/blocks/row_table_off.htm;1; -->
 
-<!-- #include tool-row-help gui/blocks/tool-row-help.htm;name=SOLVENTS; help_ext=solvator_solvents;1; -->
+<!-- #include tool-row-help gui/blocks/tool-row-help.htm;name="VARIABLES" ;help_ext="Variables"; helpTxt=$GetVar(VARIABLES); 1; -->
 
 <table>
 <tr>

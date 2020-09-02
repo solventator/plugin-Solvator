@@ -1,4 +1,4 @@
-toluene C7H8 50 177.43 15 7
+toluene 50 177.43
 restraints
 DFIX 1.49 0.02 C1 C7
 SADI 0.02 C2 C7 C6 C7

@@ -1119,7 +1119,7 @@ class Solvator(PT):
       
       number= len(q_peaks)
       
-      # Now what we do depends on how many atoms are in the moelcule. 
+      # Now what we do depends on how many atoms are in the molecule. 
       
       if len(molecule.transformed_atoms) == 1:
         first_guest_atom = molecule.transformed_atoms[0]

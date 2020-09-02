@@ -1,4 +1,4 @@
-acetone C3H6O 32 122.93 10 4
+acetone 32 122.93
 restraints
 DFIX 1.32 C1 O1
 SADI 0.04 O1 C2 O1 C3

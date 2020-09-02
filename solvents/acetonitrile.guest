@@ -1,4 +1,4 @@
-acetonitrile 22 86.72 6 3
+acetonitrile 22 86.72
 restraints
 DFIX  1.23 0.02 C1 N1
 DFIX  1.46 0.02 C1 C2

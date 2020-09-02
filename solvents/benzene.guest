@@ -1,4 +1,4 @@
-benzene C6H6 42 148.472 12 6
+benzene 42 148.472
 restraints
 AFIX 66 C1 C2 C3 C4 C5 C6
 end restraints

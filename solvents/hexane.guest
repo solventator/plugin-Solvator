@@ -1,4 +1,4 @@
-hexane C6H14 50 216.63
+hexane 50 216.63
 restraints
 DFIX 1.51 C1 C2 C2 C3 C3 C4 C4 C5 C5 C6
 SADI 0.04 C1 C3 C2 C4 C3 C5 C4 C6

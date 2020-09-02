@@ -1,9 +1,9 @@
-pentane C5H12 42 191.39
+pentane 42 191.39
 restraints
 DFIX 1.52 C1 C2 C2 C3 C3 C4 C4 C5
 SADI 0.04 C1 C3 C2 C4 C3 C5
 end restraints
-add hydrogens
+hydrogens
 HADD 137 C1 C5
 HADD 23 C2 C3 C4
 end hydrogens

@@ -1,4 +1,4 @@
-methanol CH4O 18 67.18
+methanol 18 67.18
 restraints
 DFIX 1.41 0.02 C1 O1
 end restraints

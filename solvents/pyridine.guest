@@ -1,4 +1,4 @@
-pyridine C5H5N 42 133.77
+pyridine 42 133.77
 restraints
 SADI  C1 C2 C2 C3 C3 C4 C4 C5
 SADI  0.02 N1 C1 N1 C5
@@ -6,9 +6,9 @@ SADI  0.02 C1 C2 C4 C5
 SADI  0.02 C2 C3 C3 C4
 FLAT  N1 > C5
 end restraints
-hfix
+hydrogens
 HADD 43 C1 C2 C3 C4 C5
-end hfix
+end hydrogens
 N1        0.000000    0.000000    1.428115
 C1        0.000000   -1.143435    0.722843
 C2        0.000000   -1.198033   -0.674460

@@ -1,4 +1,4 @@
-tetrahydrofuran C4H8O 42 134.66
+tetrahydrofuran 42 134.66
 restraints
 DFIX 1.42 0.02 O1 C1 O1 C4
 DFIX 1.52 0.02 C1 C2 C2 C3 C3 C4

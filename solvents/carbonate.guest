@@ -1,4 +1,4 @@
-carbonate CO3 32 64.33
+carbonate 32 64.33
 restraints
 DFIX 1.31 0.02 C1 O1 C1 O2 C1 O3 
 SADI 0.04 O1 O2 O1 O3 O2 O3

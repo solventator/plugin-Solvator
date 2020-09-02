@@ -1,4 +1,4 @@
-butanol C4H10O 42 82.50
+n-butanol 42 82.50
 restraints
 DFIX 1.41 0.02 O1 C1
 DFIX 1.51 0.02 C1 C2 C2 C3 C3 C4

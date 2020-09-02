@@ -1,4 +1,4 @@
-chloroform CHCl3 58 133.13
+chloroform 58 133.13
 restraints
 SADI  0.02 C1 Cl1 C1 Cl2 C1 Cl3
 SADI  0.04 Cl1 Cl2 Cl2 Cl3 Cl3 Cl1

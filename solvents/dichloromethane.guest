@@ -1,4 +1,4 @@
-dichloromethane CH2Cl2 42 106.31 5 3
+dichloromethane 42 106.31
 restraints
 DFIX 1.71 0.02 C1 Cl1 C1 Cl2
 end restraints

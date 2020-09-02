@@ -1,4 +1,4 @@
-dimethylsulfoxide C2H6SO 42 117.5
+dimethylsulfoxide 42 117.5
 restraints
 DFIX 1.50 0.02 S1 O1
 DFIX 1.81 0.02 S1 C1 S1 C2

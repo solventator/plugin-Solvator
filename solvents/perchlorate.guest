@@ -1,8 +1,10 @@
-perchlorate ClO4 50 92.5
+perchlorate 50 92.5
 restraints
 DFIX 1.47 0.02 Cl1 O1 Cl1 O2 Cl1 O3 Cl1 O4
 SADI 0.04 O1 O2 O1 O3 O1 O4 O2 O3 O2 O4 O3 O4
 end restraints
+hydrogens
+end hydrogens
 Cl1       0.000000    0.000000   -0.000022
 O1        0.000000    0.000000    1.472676
 O2        0.000000    1.388371   -0.490876

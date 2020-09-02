@@ -1,4 +1,4 @@
-dimethylformamide C3H6NO 39 128.04
+dimethylformamide 39 128.04
 restraints
 DFIX 1.22 C1 O1
 DFIX 1.45 N1 C2 N1 C3

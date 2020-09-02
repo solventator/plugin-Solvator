@@ -25,9 +25,8 @@ class Guest():
         with open(filename) as fh:
             header = next(fh).split()
             self.name = header[0]
-            self.formula = header[1]
-            self.electrons = float(header[2])
-            self.volume = float(header[3])
+            self.electrons = float(header[1])
+            self.volume = float(header[2])
             self.original_restraints = []
             self.original_hfix = []
             if next(fh).split()[0] == "restraints":

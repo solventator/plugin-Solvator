@@ -1,4 +1,4 @@
-ether C4H10O 42 172.52
+ether 42 172.52
 restraints
 DFIX 1.52 0.02 C1 C3 C2 C4
 DFIX 1.41 0.02 O1 C1 O1 C2

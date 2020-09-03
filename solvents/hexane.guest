@@ -5,7 +5,7 @@ SADI 0.04 C1 C3 C2 C4 C3 C5 C4 C6
 end restraints
 hydrogens
 HADD 137 C1 C6
-HAD 23 C2 C3 C4 C5
+HADD 23 C2 C3 C4 C5
 end hydrogens
 C1        1.417146    2.884434    0.000000
 C2        1.417146    1.355735    0.000000
